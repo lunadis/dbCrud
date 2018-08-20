@@ -1,0 +1,16 @@
+package view;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        ScrenPessoas app = new ScrenPessoas();
+    	
+    	System.out.println( "Hello World!" );
+        
+    }
+}

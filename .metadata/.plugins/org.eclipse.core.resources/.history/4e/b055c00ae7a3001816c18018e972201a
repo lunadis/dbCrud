@@ -1,0 +1,33 @@
+package view;
+
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class ScreenInfluenciador extends JFrame {
+	
+		JLabel lblNome = new JLabel("Nome");
+		JTextField txtNome = new JTextField();
+		JButton btnSalvar = new JButton();
+		
+	
+	
+		public ScreenInfluenciador() {
+			
+		Container paine = 	this.getContentPane();
+		
+		paine.add(lblNome);
+		paine.add(txtNome);
+		lblNome.setBounds(10, 20, 80, 20);
+		txtNome.setBounds(90, 20, 80, 30);
+			
+			
+		
+		this.setSize(300, 400);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+}

@@ -1,0 +1,26 @@
+package view;
+
+import java.awt.Container;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class ScreenInfluenciador extends JFrame {
+	
+		JLabel lblNome = new JLabel("Nome");
+		JTextField txtNome = new JTextField();
+		
+	
+	
+		public ScreenInfluenciador() {
+			
+		Container paine = 	this.getContentPane();
+			
+			
+		
+		this.setSize(250, 200);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+}
