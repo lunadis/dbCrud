@@ -1,0 +1,28 @@
+package view;
+
+import java.awt.Container;
+
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+
+public class ScrePanel extends JFrame {
+
+	JDesktopPane painel = new JDesktopPane();
+	
+	public ScrePanel () {
+		
+		Container paine = this.getContentPane();
+		
+		super("Software Gerenciador de tarefas V.0.")
+		
+		
+		
+		this.setVisible(true);
+		this.setSize(600, 400);
+		this.setLayout(null);
+		this.setResizable(true);
+	}
+	
+	
+	
+}

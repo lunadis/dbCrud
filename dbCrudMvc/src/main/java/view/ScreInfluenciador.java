@@ -1,15 +1,24 @@
 package view;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import controller.InfluenciadorJdbcDAO;
+import controller.JdbUtil;
+import controller.PessoasJdbcDAO;
+import model.Influenciador;
+
 public class ScreInfluenciador extends JFrame {
 	
-		
+	
+		Influenciador i = new Influenciador();
 	
 		JLabel lblNome = new JLabel("Nome");
 		JTextField txtNome = new JTextField();
@@ -30,11 +39,28 @@ public class ScreInfluenciador extends JFrame {
 		
 		paine.add(btnSalvar);
 		btnSalvar.setBounds(50, 60, 80, 50);
+		btnSalvar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+				Connection connection = JdbUtil.getConnection();
+				InfluenciadorJdbcDAO inlfuenciadorJdbDAO = new InfluenciadorJdbcDAO (connection);
+				
+				i.setNome(txtNome.getText());
+				
+				inlfuenciadorJdbDAO.salvar(i);
+				
+				}catch(Exception v){
+					v.printStackTrace();					
+				}
+			}
+		});
 			
 			
 		this.setLayout(null);
 		this.setSize(280, 200);
 		this.setVisible(true);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// para não fexar todo a aplicação em cada tela devera estar escrito HIDE_On_Close ao inves de EXIT_ON_CLOSE
+				this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 	}
 }

@@ -64,23 +64,27 @@ public class ScrePessoas extends JFrame {
 			try {
 			Connection connection = JdbUtil.getConnection();
 			PessoasJdbcDAO PessoasJdbDAO = new PessoasJdbcDAO(connection);
-			InfluenciadorJdbcDAO inlfuenciadorJdbDAO = new InfluenciadorJdbcDAO (connection);
-			MetodologiaJdbcDAO metodologiaJdbDAO = new MetodologiaJdbcDAO(connection);
-			TarefasJdbcDAO tarefasJdbDAO = new TarefasJdbcDAO(connection);
 			
 			 Pessoas p = new Pessoas();
 			 p.setNome(txtNome.getText());
 			 p.setEmail(txtEmail.getText());
+			 if(chMasculino.isSelected()) {
 			 p.setSexo("M");
-			 
+			 }else {
+				 p.setSexo("F");
+			 }
 			 PessoasJdbDAO.salvar(p);
-			 
+			
+			 //comando para fechar a janela depois da ação
+			 dispose();
 			 	
 		}catch(Exception v) {
 			v.printStackTrace();
 		}
 		
 		}
+
+		
 		   
 	   });
 	   
@@ -88,8 +92,8 @@ public class ScrePessoas extends JFrame {
 	  this.setLayout(null);
 	  this.setSize(350, 320);
 	  this.setVisible(true);
-	  this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-	  
+	// para não fexar todo a aplicação em cada tela devera estar escrito HIDE_On_Close ao inves de EXIT_ON_CLOSE
+			this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 	  
   }
 

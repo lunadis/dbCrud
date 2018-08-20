@@ -1,0 +1,25 @@
+package view;
+
+import java.awt.Container;
+
+import javax.swing.JFrame;
+
+public class ScrePanel extends JFrame {
+
+	jDesktopPane painel = new JDesktopPane();
+	
+	public ScrePanel () {
+		
+		Container paine = this.getContentPane();
+		
+		
+		
+		this.setVisible(true);
+		this.setSize(600, 400);
+		this.setLayout(null);
+		this.setResizable(true);
+	}
+	
+	
+	
+}

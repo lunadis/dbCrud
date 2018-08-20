@@ -1,0 +1,78 @@
+package view;
+
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class ScrePanel extends JFrame {
+
+	//Painel principal que vai receber a barra de menu
+	JDesktopPane painel = new JDesktopPane();
+	
+	*
+	JMenuBar barra = new JMenuBar();
+	
+	JMenu menuP = new JMenu("Pessoas");
+	JMenu menuT = new JMenu("Tarefas");
+	JMenu menuM = new JMenu("Metodologia");
+	JMenu menuI = new JMenu("Influencia");
+	
+	JMenuItem cadPessoa;
+	JMenuItem cadTarefa;
+	JMenuItem cadMetodologia;
+	JMenuItem cadInfluencia;
+	
+	public ScrePanel () {
+		
+		super("Software Gerenciador de Tarefas v0.0.0.1"); 
+		
+		Container paine = this.getContentPane();
+		
+		this.setJMenuBar(barra);
+		barra.add(menuP);
+		barra.add(menuT);
+		barra.add(menuM);
+		barra.add(menuI);
+		
+		menuP.add(cadPessoa = new JMenuItem("Cadastrar pessoas"));
+		cadPessoa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 ScrePessoas app = new ScrePessoas();
+			}
+		});
+		menuT.add(cadTarefa = new JMenuItem("Cadastrar Tarefa"));
+		cadTarefa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ScreTarefas tare = new ScreTarefas();
+			}
+		});
+		menuM.add(cadMetodologia = new JMenuItem("Cadastrar Metodologia"));
+		cadMetodologia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ScreMetodologia meto = new ScreMetodologia();
+			}
+		});
+		menuI.add(cadInfluencia = new JMenuItem("Cadastrar Influencia"));
+		cadInfluencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ScreInfluenciador inf = new ScreInfluenciador();
+			}
+		});
+		
+		
+		
+		this.setVisible(true);
+		this.setSize(600, 400);
+		this.setLayout(null);
+		this.setResizable(true);
+	}
+	
+	
+	
+}

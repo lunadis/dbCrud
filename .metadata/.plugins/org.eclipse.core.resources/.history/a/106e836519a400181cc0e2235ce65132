@@ -1,0 +1,31 @@
+package view;
+
+import java.awt.Container;
+
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+
+public class ScrePanel extends JFrame {
+
+	JDesktopPane painel = new JDesktopPane();
+	JMenuBar menu = new JMenuBar();
+	
+	
+	public ScrePanel () {
+		
+		super("Software Gerenciador de Tarefas v0.0.0.1"); 
+		
+		Container paine = this.getContentPane();
+		
+		menu.set
+		
+		this.setVisible(true);
+		this.setSize(600, 400);
+		this.setLayout(null);
+		this.setResizable(true);
+	}
+	
+	
+	
+}

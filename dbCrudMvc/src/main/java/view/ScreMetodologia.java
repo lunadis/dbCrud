@@ -34,6 +34,7 @@ public class ScreMetodologia extends JFrame {
 	this.setLayout(null);
 	this.setSize(280, 200);
 	this.setVisible(true);
-	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	// para não fexar todo a aplicação em cada tela devera estar escrito HIDE_On_Close ao inves de EXIT_ON_CLOSE
+			this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 }
 }

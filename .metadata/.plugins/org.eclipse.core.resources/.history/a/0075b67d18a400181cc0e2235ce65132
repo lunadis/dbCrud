@@ -1,0 +1,17 @@
+package view;
+
+import javax.swing.JFrame;
+
+public class ScrePanel extends JFrame {
+
+	
+	public ScrePaenl () {
+		
+		
+		
+		this.set
+	}
+	
+	
+	
+}

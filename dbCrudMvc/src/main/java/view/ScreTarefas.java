@@ -58,7 +58,8 @@ public class ScreTarefas extends JFrame {
 		this.setLayout(null);
 		this.setVisible(true);
 		this.setSize(300, 400);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// para não fexar todo a aplicação em cada tela devera estar escrito HIDE_On_Close ao inves de EXIT_ON_CLOSE
+		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		
 		
 	}

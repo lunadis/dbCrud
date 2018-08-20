@@ -1,0 +1,15 @@
+package view;
+
+public class ScrePanel extends JFrame {
+
+	
+	public ScrePaenl () {
+		
+		
+		
+		this.set
+	}
+	
+	
+	
+}
