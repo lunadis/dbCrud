@@ -3,14 +3,30 @@ package view;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import controller.JdbUtil;
+import controller.PessoasJdbcDAO;
+import controller.TarefasJdbcDAO;
 
 public class ScrePanel extends JFrame {
+	
+	private Connection conn;
+	
+	public ScrePanel(Connection conn) {
+		this.conn = conn;
+	}
 
 	//Painel principal que vai receber a barra de menu
 	JDesktopPane painel = new JDesktopPane();
@@ -30,11 +46,70 @@ public class ScrePanel extends JFrame {
 	JMenuItem cadMetodologia;
 	JMenuItem cadInfluencia;
 	
+	
+	JLabel lblIdP = new JLabel("Id Pessoa:");
+	JLabel lblIdT = new JLabel("Id terefa:");
+	JTextField txtIdP = new JTextField("");
+	JTextField txtidT = new JTextField("");
+	JLabel teste = new JLabel("");
+	
+	JButton btnRegistrar = new JButton("Registrar");
+	
+	
 	public ScrePanel () {
 		
 		super("Software Gerenciador de Tarefas v0.0.0.1"); 
 		
+		
 		Container paine = this.getContentPane();
+		
+		
+		paine.add(lblIdP);
+		paine.add(txtIdP);
+		lblIdP.setBounds(20, 30, 80, 20);
+		txtIdP.setBounds(90, 30, 40, 20);
+	   
+		paine.add(lblIdT);
+		paine.add(txtidT);
+		lblIdT.setBounds(20, 55, 50, 20);
+		txtidT.setBounds(90, 55, 40, 20);
+		
+		
+		btnRegistrar.setBounds(80, 80, 90, 40);
+		paine.add(btnRegistrar);
+		paine.add(teste);
+		btnRegistrar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				try {
+					Connection connection = JdbUtil.getConnection();
+					PessoasJdbcDAO PeVerificar = new PessoasJdbcDAO (connection);
+					TarefasJdbcDAO TaVerificar = new TarefasJdbcDAO(connection);
+					
+					PeVerificar.select(Integer.parseInt(txtIdP.getText()));
+					TaVerificar.select(Integer.parseInt(txtidT.getText()));
+					
+					if(PeVerificar.select(Integer.parseInt(txtIdP.getText())) == txtIdP.getText() && TaVerificar.select(Integer.parseInt(txtidT.getText())) == txtidT.getText()) {
+						System.out.println("errou");						
+					}else {
+						String sql="INSERT INTO `relpessoatarefa` (`id_pessoa`, `id_tarefa`) VALUES ('"+txtIdP.getText()+"', '"+txtidT.getText()+"')";
+						System.out.println(sql);
+						PreparedStatement prepareStatement = connection.prepareStatement(sql);
+						prepareStatement.executeUpdate();
+						prepareStatement.close();
+						JOptionPane.showMessageDialog(null,"Tarefa Atribuida","INSERIDO", JOptionPane.INFORMATION_MESSAGE);
+					}
+				
+				}catch(Exception v) {
+					
+				}
+				
+				
+			}
+		});
+		
 		//adicionando a barra do menu no painel
 		this.setJMenuBar(barra);
 		
@@ -72,6 +147,7 @@ public class ScrePanel extends JFrame {
 				ScreInfluenciador inf = new ScreInfluenciador();
 			}
 		});
+		
 		
 		
 		

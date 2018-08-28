@@ -1,0 +1,59 @@
+package view;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import controller.JdbUtil;
+import controller.MetodologiaJdbcDAO;
+import controller.PessoasJdbcDAO;
+import controller.TarefasJdbcDAO;
+import model.Metodologia;
+import model.Pessoas;
+import model.Tarefas;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+	Pessoas p = new Pessoas();
+		
+		Metodologia m = new Metodologia();
+		Tarefas t = new Tarefas();
+		
+		try {
+			p.setNome("Luis");
+			p.setEmail("luis@luis");
+			p.setSexo("m");
+				
+			m.setNome("Scrum");
+			
+			Connection connection = JdbUtil.getConnection();
+			PessoasJdbcDAO PeVerificar = new PessoasJdbcDAO (connection);
+			TarefasJdbcDAO TaVerificar = new TarefasJdbcDAO(connection);
+			
+			PeVerificar.select(1);
+			TaVerificar.select(1);
+			
+			if(TaVerificar.select(1).) {
+				String sql="INSERT INTO `relpessoatarefa` (`id_pessoa`, `id_tarefa`) VALUES ('1', '2')";
+				System.out.println(sql);
+				PreparedStatement prepareStatement = connection.prepareStatement(sql);
+				prepareStatement.executeUpdate();
+				prepareStatement.close();
+				
+			}else {
+				
+			}
+		
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}
+		
+    }
+}

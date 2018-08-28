@@ -15,31 +15,7 @@ import model.Tarefas;
 public class GereExec {
 
 	public static void main(String[] args) {
-		Pessoas p = new Pessoas();
-		
-		Metodologia m = new Metodologia();
-		Tarefas t = new Tarefas();
-		
-		try {
-			p.setNome("Luis");
-			p.setEmail("luis@luis");
-			p.setSexo("m");
-				
-			m.setNome("Scrum");
-			
-			Connection connection = JdbUtil.getConnection();
-			MetodologiaJdbcDAO metodologiaJdbDAO = new MetodologiaJdbcDAO(connection);
-			TarefasJdbcDAO tarefasJdbDAO = new TarefasJdbcDAO(connection);
-			
-			
-			metodologiaJdbDAO.salvar(m);
-			
-		
-		}catch(Exception e){
-			e.printStackTrace();
-			
-		}
-		
+	
 		
 		
 

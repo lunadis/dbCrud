@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,16 +12,22 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import controller.JdbUtil;
+import controller.TarefasJdbcDAO;
+import model.Tarefas;
+
 public class ScreTarefas extends JFrame {
 	
 	JLabel lblTitulo = new JLabel ("Titulo:");
 	JLabel lblpEstimado = new JLabel ("Prazo Estimado:");
 	JLabel lblDescricao = new JLabel ("Descricão");
 	JLabel lblDataInicio = new JLabel ("Data Inicio:");
+	JLabel lblDataFinal = new JLabel ("Data Final:");
 	JTextField txtTitulo = new JTextField();
 	JTextField txtpEstimado = new JTextField();
 	JTextArea txtDescricao = new JTextArea();
 	JTextField txtDataInicio = new JTextField();
+	JTextField txtDataFinal = new JTextField();
 	JScrollPane Scrollpane = new JScrollPane(txtDescricao);
 	JButton btnSalvar = new JButton("Salvar");
 	
@@ -48,9 +57,40 @@ public class ScreTarefas extends JFrame {
 		lblDataInicio.setBounds(10, 190, 95, 20);
 		txtDataInicio.setBounds(80, 190, 100, 20);
 		
+		/*paine.add(lblDataFinal);
+		paine.add(txtDataFinal);
+		lblDataFinal.setBounds(10, 190, 95, 20);
+		txtDataFinal.setBounds(80, 190, 100, 20);*/
+		
+		
 		paine.add(btnSalvar);
 		btnSalvar.setBounds(80, 230, 80, 60);
+		btnSalvar.addActionListener(new ActionListener() {
 		
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					Connection connection = JdbUtil.getConnection();
+					TarefasJdbcDAO TarefasDAO = new TarefasJdbcDAO(connection);
+					
+					Tarefas t = new Tarefas();
+					t.setTitulo(txtTitulo.getText());
+					t.setpEstimado(txtpEstimado.getText());
+					t.setDescricao(txtDescricao.getText());
+					t.setDataInicio(txtDataInicio.getText());
+					t.setDataFinal("28/01/2018");
+					
+					TarefasDAO.salvar(t);
+					dispose();
+					
+				}catch(Exception v){
+					v.printStackTrace();
+				}
+				
+			}
+			
+		});
 		
 		
 		
