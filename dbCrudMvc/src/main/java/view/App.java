@@ -3,6 +3,7 @@ package view;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import controller.JdbUtil;
 import controller.MetodologiaJdbcDAO;
@@ -20,6 +21,19 @@ public class App
 {
     public static void main( String[] args )
     {
-    	ScrePanel principal = new ScrePanel();
+    	//ScrePanel principal = new ScrePanel();
+    	try {
+    		Connection connection = JdbUtil.getConnection();
+    		
+    		TarefasJdbcDAO TarefasDAO = new TarefasJdbcDAO(connection);
+    		
+    		TarefasDAO.listar();
+    		
+    	}catch(Exception e){
+    		e.printStackTrace();
+    		
+    	}
+    	
+    	
     }
 }

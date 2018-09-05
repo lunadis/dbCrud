@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import model.Tarefas;
 
@@ -37,6 +40,9 @@ public class TarefasJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 	}
+	 
+	
+	// metodo para verificar se a seleção é valida
 	public String select(int a) throws SQLException{
 		
 		String sql="SELECT * FROM `tarefa` WHERE `id_tarefa` = "+a+"";
@@ -57,6 +63,42 @@ public class TarefasJdbcDAO {
 		
 		return	rsf;	
 	}
-
+	
+	public List<Tarefas> listar(){
+		
+		String sql = "select * 'from tarefas'";
+		System.out.println(sql);
+		
+		List<Tarefas> tarefas = new ArrayList<Tarefas>();
+		
+			try {
+				PreparedStatement preparedStatment = this.conn.prepareStatement(sql);
+				ResultSet rs = preparedStatment.executeQuery();
+				//enquanto ainda houver indices para percorrerer (.next() tem a função de percorrer os indices da query);
+				while(rs.next()) {
+					
+					int id_tarefa = rs.getInt("id");
+					String titulo = rs.getString("titulo");
+					String PrazoEstimado = rs.getString("pEstimado");
+					String descricao = rs.getString("descricao");
+					String dataInicio = rs.getString("dataInicio");
+					String datafinal = rs.getString("dataFinal");
+					
+					Tarefas tarefa = new Tarefas();
+					
+					tarefa.setTitulo(titulo);
+					tarefa.setpEstimado(PrazoEstimado);
+					tarefa.setDescricao(descricao);
+					tarefa.setDataInicio(dataInicio);
+					tarefa.setDataFinal(datafinal);
+				}
+				preparedStatment.close();
+			}catch (SQLException e){
+				e.printStackTrace();
+			}
+			return tarefas;
+			
+		
+	}
 	
 }
